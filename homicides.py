@@ -5,6 +5,7 @@ Spyder Editor
 This is a temporary script file.
 """
 
+## 0 clean data! remove outliers
 ## 1st descriptive statistics 
 ## 2nd describe main differences between states
     # 3 plus
