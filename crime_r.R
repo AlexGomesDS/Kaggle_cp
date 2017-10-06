@@ -6,10 +6,7 @@ database <- read_excel("~/GitHub/Kaggle_cp/crimeds.xls")
 #Process of subsecting data, based on values of 3 variables:
 
 crimeds <- database[which(database$'Victim Count' > 0),]
-teste2 <- crimeds[which(crimeds$`Perpetrator Sex`>4)]
-teste2 <- crimeds[which(crimeds$`Perpetrator Sex`>4),]
 teste2 <- crimeds[which(crimeds$`Perpetrator Age`>4),]
-teste3 <- teste2[which(crimeds$`Victim Age`>0),]
 teste3 <- teste2[which(teste2$`Victim Age`>0),]
 crimeds<- teste3
 write.csv(crimeds, file= "crimeds.csv", row.names = F)
@@ -60,7 +57,7 @@ qplot(crimeds$Year, geom="histogram",
       main= "Homicides by Year", 
       xlab = "Year",
       fill= I("grey"),
-      alpha=I(1)
+      alpha=I(1))
 
 #Crimes per Year 2 - Density hist
 ggplot(data=crimeds, aes(crimeds$Year)) + 
