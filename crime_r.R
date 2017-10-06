@@ -1,3 +1,8 @@
+# Import data
+library(readxl)
+library(qplot)
+database <- read_excel("~/GitHub/Kaggle_cp/crimeds.xls")
+
 #Process of subsecting data, based on values of 3 variables:
 
 crimeds <- database[which(database$'Victim Count' > 0),]
