@@ -48,3 +48,21 @@ sum(crimeds$State == "Unknown")
 #STATE:no unkwnown/outliers
 table(crimeds$Month)
 #MONTH:no unkwnown/outliers
+
+#Crimes per Year
+qplot(crimeds$Year, geom="histogram", 
+      binwidth=0.5,
+      main= "Homicides by Year", 
+      xlab = "Year",
+      fill= I("grey"),
+      alpha=I(1))
+
+#Crimes per Year 2
+ggplot(data=crimeds, aes(crimeds$Year)) + 
+  geom_histogram(aes(y =..density..), 
+                 breaks=seq(1,1, by = 1), 
+                 col="red", 
+                 fill="green", 
+                 alpha=.4) + 
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title="Crimes by Year", x="Year", y="%")
