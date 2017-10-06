@@ -49,15 +49,15 @@ sum(crimeds$State == "Unknown")
 table(crimeds$Month)
 #MONTH:no unkwnown/outliers
 
-#Crimes per Year
+#Crimes per Year - bars histogram -  hbar_year
 qplot(crimeds$Year, geom="histogram", 
       binwidth=0.5,
       main= "Homicides by Year", 
       xlab = "Year",
       fill= I("grey"),
-      alpha=I(1))
+      alpha=I(1)
 
-#Crimes per Year 2
+#Crimes per Year 2 - Density hist
 ggplot(data=crimeds, aes(crimeds$Year)) + 
   geom_histogram(aes(y =..density..), 
                  breaks=seq(1,1, by = 1), 
@@ -66,3 +66,25 @@ ggplot(data=crimeds, aes(crimeds$Year)) +
                  alpha=.4) + 
   geom_density(alpha=.2, fill="#FF6666") + 
   labs(title="Crimes by Year", x="Year", y="%")
+
+
+## Crimes per year - Bars with labels
+ggplot(data=crimeds, aes(crimeds$Year)) + 
+  geom_histogram(aes(y =..count..), 
+                 binwidth = 0.5, 
+                 col="black", 
+                 fill="black", 
+                 alpha=.8) + 
+  labs(title="Crimes by Year", x="Year", y="count") +
+  stat_bin(binwidth=1, geom="text", colour="white", size=1.5,
+           aes(label=..count..), position=position_stack(vjust=0.9))
+
+##Crime per month. Any seasonal variation?
+ggplot(data=crimeds, aes(crimeds$Month)) + 
+  geom_bar(aes(y =..count..), 
+                 #binwidth = 0.5, 
+                 col="black", 
+                 fill="black", 
+                 alpha=.8) + 
+  labs(title="Crimes by Month", x="Month", y="count")
+           
