@@ -1,0 +1,29 @@
+Descriptive Analysis of this:
+
+"State"                 
+“Year" - Done
+"Month" - Done 
+"Incident"           
+"Crime Type" 
+"Crime Solved"
+"Victim Sex"           
+"Victim Age" 
+"Victim Race"
+"Victim Ethnicity"     
+"Perpetrator Sex"
+"Perpetrator Age"
+"Perpetrator Race"     
+"Perpetrator Ethnicity" 
+"Relationship"
+"Weapon"               
+"Victim Count"
+"Perpetrator Count"
+
+
+Profiling:
+Relationship Between the fw Variables
+
+Victim Age and Perpetrator Age - Done
+Relationship Victim/Perpetrator 
+Weapon/Relationship
+Victim Count/Weapon

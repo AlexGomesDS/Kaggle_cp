@@ -1,6 +1,7 @@
 # Import data
 library(readxl)
 library(qplot)
+library(ggplot2)
 database <- read_excel("~/GitHub/Kaggle_cp/crimeds.xls")
 
 #Process of subsecting data, based on values of 3 variables:
@@ -38,6 +39,12 @@ install.packages("scatterplot3d")
 library(scatterplot3d)
 attach(crimeds)
 scatterplot3d(PA, VA, main="3D representation of PA vs VA")
+
+## Age difference between Perpretator and Victims
+crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
+qplot(crimeds$AgeDifference,binwidth=1)
+
+
 #Histograms (for numeric data) and tables for categorical
 hist(crimeds$Year)
 hist(crimeds$`Victim Count`)
@@ -92,7 +99,7 @@ ggplot(data=crimeds, aes(crimeds$Month)) +
 
 <<<<<<< HEAD
 
-library(ggplot2)
+
 ## Weapons without Unknown values
 
 ggplot(data=Weapon2, aes(Weapon2$Weapon)) + 
@@ -105,16 +112,14 @@ ggplot(data=Weapon2, aes(Weapon2$Weapon)) +
 
 #Weapons by crime Type (absolute freq)
 table(Weapon2$Weapon, Weapon2$`Crime Type`)
+
 #Relative frequency of weapons used: 
 weaponf = Weapon2$Weapon
 weapon.freq=table(weaponf)
 weapon.rel.freq = weapon.freq / nrow(crimeds)
 sort(weapon.rel.freq, decreasing = TRUE)
 
+#
 
-=======
-## Age difference between Perpretator and Victims
-crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
-qplot(crimeds$AgeDifference,binwidth=1)
-           
->>>>>>> 15851344763fca6287e4097d7a2776f27b7b8d52
+colnames(crimeds)
+
