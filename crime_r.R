@@ -89,4 +89,8 @@ ggplot(data=crimeds, aes(crimeds$Month)) +
                  fill="black", 
                  alpha=.8) + 
   labs(title="Crimes by Month", x="Month", y="count")
+
+## Age difference between Perpretator and Victims
+crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
+qplot(crimeds$AgeDifference,binwidth=1)
            
