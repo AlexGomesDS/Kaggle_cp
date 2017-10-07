@@ -1,7 +1,10 @@
-# Import data
+# Import data and packages
 library(readxl)
 library(qplot)
 library(ggplot2)
+install.packages("scatterplot3d")
+library(scatterplot3d)
+
 database <- read_excel("~/GitHub/Kaggle_cp/crimeds.xls")
 
 #Process of subsecting data, based on values of 3 variables:
@@ -18,7 +21,6 @@ summary(crimeds$`Victim Age`)
 boxplot(crimeds$`Victim Age`)
 
 ##Solving the Victims Age Problem
-
 #We found some outliers here. Max value= 998? Lets clean this!
 crimedsteste <- crimeds[which(crimeds$`Victim Age` <110),]
 #Lets check if there's any age above 110
@@ -28,17 +30,12 @@ sum(crimedsteste$`Victim Age` >99)
 #Nop. Lets continue
 #35318-35278 = we lost 40 outliers (victims with >110 years old)
 crimeds <- crimedsteste
-boxplot(crimeds)
 
 #some plots about age 
 VA <- crimeds$`Victim Age`
 PA <- crimeds$`Perpetrator Age`
 pairs(~VA+PA, data=crimeds, main="VA vs PA")
 
-install.packages("scatterplot3d")
-library(scatterplot3d)
-attach(crimeds)
-scatterplot3d(PA, VA, main="3D representation of PA vs VA")
 
 ## Age difference between Perpretator and Victims
 crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
@@ -95,7 +92,8 @@ ggplot(data=crimeds, aes(crimeds$Month)) +
                  col="black", 
                  fill="black", 
                  alpha=.8) + 
-  labs(title="Crimes by Month", x="Month", y="count")
+  labs(title="Crimes by Month", x="Month", y="count")+
+  theme(panel.background = element_blank())
 
 <<<<<<< HEAD
 
@@ -110,6 +108,7 @@ ggplot(data=Weapon2, aes(Weapon2$Weapon)) +
            alpha=.8) + 
   labs(title="Crimes by Weapon Used", x="Weapon", y="Count")
 
+
 #Weapons by crime Type (absolute freq)
 table(Weapon2$Weapon, Weapon2$`Crime Type`)
 
@@ -119,7 +118,6 @@ weapon.freq=table(weaponf)
 weapon.rel.freq = weapon.freq / nrow(crimeds)
 sort(weapon.rel.freq, decreasing = TRUE)
 
-#
 
 colnames(crimeds)
 
