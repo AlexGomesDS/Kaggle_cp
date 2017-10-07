@@ -90,6 +90,7 @@ ggplot(data=crimeds, aes(crimeds$Month)) +
                  alpha=.8) + 
   labs(title="Crimes by Month", x="Month", y="count")
 
+<<<<<<< HEAD
 
 library(ggplot2)
 ## Weapons without Unknown values
@@ -111,3 +112,9 @@ weapon.rel.freq = weapon.freq / nrow(crimeds)
 sort(weapon.rel.freq, decreasing = TRUE)
 
 
+=======
+## Age difference between Perpretator and Victims
+crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
+qplot(crimeds$AgeDifference,binwidth=1)
+           
+>>>>>>> 15851344763fca6287e4097d7a2776f27b7b8d52
