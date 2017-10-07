@@ -89,4 +89,25 @@ ggplot(data=crimeds, aes(crimeds$Month)) +
                  fill="black", 
                  alpha=.8) + 
   labs(title="Crimes by Month", x="Month", y="count")
-           
+
+
+library(ggplot2)
+## Weapons without Unknown values
+
+ggplot(data=Weapon2, aes(Weapon2$Weapon)) + 
+  geom_bar(aes(y =..count..), 
+           #binwidth = 0.5, 
+           col="black", 
+           fill="black", 
+           alpha=.8) + 
+  labs(title="Crimes by Weapon Used", x="Weapon", y="Count")
+
+#Weapons by crime Type (absolute freq)
+table(Weapon2$Weapon, Weapon2$`Crime Type`)
+#Relative frequency of weapons used: 
+weaponf = Weapon2$Weapon
+weapon.freq=table(weaponf)
+weapon.rel.freq = weapon.freq / nrow(crimeds)
+sort(weapon.rel.freq, decreasing = TRUE)
+
+
