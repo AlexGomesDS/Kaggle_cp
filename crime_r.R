@@ -31,16 +31,26 @@ sum(crimedsteste$`Victim Age` >99)
 #35318-35278 = we lost 40 outliers (victims with >110 years old)
 crimeds <- crimedsteste
 
+sapply(crimeds, mode)#check type of columns
+
 #some plots about age 
 VA <- crimeds$`Victim Age`
 PA <- crimeds$`Perpetrator Age`
 pairs(~VA+PA, data=crimeds, main="VA vs PA")
 
+hist(crimeds$`Perpetrator Age`, main = "Perpetrator Age", breaks = 100
+) + axis(1, at=seq(0, 100, by=10))
+
+hist(crimeds$`Victim Age`, main = "Victim Age", breaks = 100
+) + axis(1, at=seq(0, 100, by=10))
 
 ## Age difference between Perpretator and Victims
 crimeds$AgeDifference = crimeds$`Perpetrator Age` - crimeds$`Victim Age`
 qplot(crimeds$AgeDifference,binwidth=1)
 
+##Correlation between Ages
+cor(crimeds$'Victim Age', crimeds$'Perpetrator Age', method = c("spearman"))
+colnames(crimeds)
 
 #Histograms (for numeric data) and tables for categorical
 hist(crimeds$Year)
@@ -119,5 +129,7 @@ weapon.rel.freq = weapon.freq / nrow(crimeds)
 sort(weapon.rel.freq, decreasing = TRUE)
 
 
-colnames(crimeds)
+#Race
+
+
 
